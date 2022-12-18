@@ -5,40 +5,77 @@ import Categories from "../components/Categories"
 import PizzaBlock from "../components/PizzaBlock/PizzaBlock"
 import Sort from "../components/Sort"
 import Skeleton from "../components/PizzaBlock/Skeleton"
+import Pagination from "../components/Pagination/Pagination"
 
-const Home = () => {
+const Home = ({ searchValue }) => {
   const [isLoading, setIsLoading] = React.useState(true)
 
   const [pizzaItems, setPizzaItems] = React.useState([])
 
+  const [categoryId, setCategoryId] = React.useState(0)
+
+  const [currentPage, setCurrentPage] = React.useState(1)
+
+  const [sortType, setSortType] = React.useState({
+    name: "популярністю",
+    sortProperty: "rating",
+  })
+
   React.useEffect(() => {
+    setIsLoading(true)
+
+    const sortBy = sortType.sortProperty.replace("-", "")
+    const order = sortType.sortProperty.includes("-") ? "asc" : "desc"
+    const category = categoryId > 0 ? `category=${categoryId}` : ""
+    const search = searchValue ? `&filter=${searchValue}` : ""
+    const pagination = `page=${currentPage}&limit=8`
+
     axios
-      .get("https://63948ccc4df9248eada596f8.mockapi.io/items")
+      .get(
+        `https://63948ccc4df9248eada596f8.mockapi.io/items?${pagination}${category}&sortBy=${sortBy}&order=${order}${search}`
+      )
       .then((res) => {
         setPizzaItems(res.data)
         setIsLoading(false)
+        window.scrollTo(0, 0)
       })
-  }, [])
+  }, [categoryId, sortType, searchValue, currentPage])
+
+  // Фільтрація для статичних даних
+
+  // const pizzas = pizzaItems
+  //   .filter((obj) => {
+  //     if (obj.name.toLowerCase().includes(searchValue.toLowerCase())) {
+  //       return true
+  //     }
+  //     return false
+  //   })
+  //   .map((obj) => <PizzaBlock key={obj.id} {...obj} />)
+
+  const pizzas = pizzaItems.map((obj) => <PizzaBlock key={obj.id} {...obj} />)
+
+  const skeletons = [...new Array(10)].map((_, index) => (
+    <Skeleton key={index} />
+  ))
 
   return (
-    <div className="content">
-      <div className="container">
-        <div className="content__top">
-          <Categories />
-          <Sort />
-        </div>
-        <h2 className="content__title">Всі піци</h2>
-        <div className="content__items">
-          {isLoading
-            ? [...new Array(10)].map((_, index) => <Skeleton key={index} />)
-            : pizzaItems.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
-        </div>
+    <div className="container">
+      <div className="content__top">
+        <Categories
+          categoryId={categoryId}
+          onClickCategory={(i) => setCategoryId(i)}
+        />
+        <Sort sortType={sortType} onClickSort={(i) => setSortType(i)} />
+      </div>
+      <h2 className="content__title">Всі піци</h2>
+      <div className="content__items">{isLoading ? skeletons : pizzas}</div>
 
-        {/* <div className="content__error-info">
+      <Pagination onChangePage={(number) => setCurrentPage(number)} />
+
+      {/* <div className="content__error-info">
           <h2>Виникла помилка 😕</h2>
           <p>Нажаль, не вдалося отримати піци. Спробуйте пізніше.</p>
         </div> */}
-      </div>
     </div>
   )
 }

@@ -1,16 +1,16 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import Header from '../components/Header'
+import React from "react"
+import { Outlet } from "react-router-dom"
+import Header from "../components/Header"
 
-const MainLayout = () => {
-    return (
-        <div className='wrapper'>
-            <Header />
-            <div className='container'>
-                <Outlet />
-            </div>
-        </div>
-    )
+const MainLayout = ({ searchValue, setSearchValue }) => {
+  return (
+    <div className="wrapper">
+      <Header searchValue={searchValue} setSearchValue={setSearchValue} />
+      <div className="content">
+        <Outlet />
+      </div>
+    </div>
+  )
 }
 
 export default MainLayout

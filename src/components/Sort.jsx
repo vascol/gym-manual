@@ -1,17 +1,27 @@
-import React from "react";
+import React from "react"
 
-const Sort = () => {
-  const list = ["популярністю", "цініою", "алфавітом"];
+const Sort = ({ sortType, onClickSort }) => {
+  const list = [
+    { name: "популярністю(DESC)", sortProperty: "rating" },
+    { name: "популярністю (ASC)", sortProperty: "-rating" },
+    { name: "цініою (DESC)", sortProperty: "price" },
+    { name: "цініою (ASC)", sortProperty: "-price" },
+    { name: "алфавітом (DESC)", sortProperty: "title" },
+    { name: "алфавітом (ASC)", sortProperty: "-title" },
+  ]
 
-  const [selected, setSelected] = React.useState(0);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
 
-  const sortName = list[selected];
+  // const sortRef = React.useRef()
 
   const onClickListItem = (i) => {
-    setSelected(i);
-    setOpen(false);
-  };
+    onClickSort(i)
+    setOpen(false)
+  }
+
+  // React.useEffect(() => {
+  //   document.body.addEventListener("click", handleOutsideClick)
+  // }, [])
 
   return (
     <div className="sort">
@@ -29,7 +39,7 @@ const Sort = () => {
           />
         </svg>
         <b>Сортувати за:</b>
-        <span onClick={() => setOpen(!open)}>{sortName}</span>
+        <span onClick={() => setOpen(!open)}>{sortType.name}</span>
       </div>
       {open && (
         <div className="sort__popup">
@@ -37,17 +47,19 @@ const Sort = () => {
             {list.map((obj, i) => (
               <li
                 key={i}
-                className={selected === i ? "active" : ""}
-                onClick={() => onClickListItem(i)}
+                className={
+                  sortType.sortProperty === obj.sortProperty ? "active" : ""
+                }
+                onClick={() => onClickListItem(obj)}
               >
-                {obj}
+                {obj.name}
               </li>
             ))}
           </ul>
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Sort;
+export default Sort
