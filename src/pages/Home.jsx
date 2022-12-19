@@ -6,29 +6,34 @@ import PizzaBlock from "../components/PizzaBlock/PizzaBlock"
 import Sort from "../components/Sort"
 import Skeleton from "../components/PizzaBlock/Skeleton"
 import Pagination from "../components/Pagination/Pagination"
-import { SearchContext } from "../App"
+import { useDispatch, useSelector } from "react-redux"
+import {
+  setCategoryId,
+  setCurrentPage,
+  setSort,
+} from "../redux/filter/filterSlice"
 
 const Home = () => {
-  const { searchValue } = React.useContext(SearchContext)
+  const dispatch = useDispatch()
+
+  const { categoryId, searchValue, currentPage, sort } = useSelector(
+    (state) => state.filter
+  )
 
   const [isLoading, setIsLoading] = React.useState(true)
 
   const [pizzaItems, setPizzaItems] = React.useState([])
 
-  const [categoryId, setCategoryId] = React.useState(0)
-
-  const [currentPage, setCurrentPage] = React.useState(1)
-
-  const [sortType, setSortType] = React.useState({
-    name: "популярністю",
-    sortProperty: "rating",
-  })
+  // const [sortType, setSortType] = React.useState({
+  //   name: "популярністю",
+  //   sortProperty: "rating",
+  // })
 
   React.useEffect(() => {
     setIsLoading(true)
 
-    const sortBy = sortType.sortProperty.replace("-", "")
-    const order = sortType.sortProperty.includes("-") ? "asc" : "desc"
+    const sortBy = sort.sortProperty.replace("-", "")
+    const order = sort.sortProperty.includes("-") ? "asc" : "desc"
     const category = categoryId > 0 ? `category=${categoryId}` : ""
     const search = searchValue ? `&filter=${searchValue}` : ""
     const pagination = `&page=${currentPage}&limit=8`
@@ -42,7 +47,7 @@ const Home = () => {
         setIsLoading(false)
         window.scrollTo(0, 0)
       })
-  }, [categoryId, sortType, searchValue, currentPage])
+  }, [categoryId, sort, searchValue, currentPage])
 
   // Фільтрація для статичних даних
 
@@ -66,14 +71,14 @@ const Home = () => {
       <div className="content__top">
         <Categories
           categoryId={categoryId}
-          onClickCategory={(i) => setCategoryId(i)}
+          onClickCategory={(i) => dispatch(setCategoryId(i))}
         />
-        <Sort sortType={sortType} onClickSort={(i) => setSortType(i)} />
+        <Sort sortType={sort} onClickSort={(i) => dispatch(setSort(i))} />
       </div>
       <h2 className="content__title">Всі піци</h2>
       <div className="content__items">{isLoading ? skeletons : pizzas}</div>
 
-      <Pagination onChangePage={(number) => setCurrentPage(number)} />
+      <Pagination onChangePage={(number) => dispatch(setCurrentPage(number))} />
 
       {/* <div className="content__error-info">
           <h2>Виникла помилка 😕</h2>
