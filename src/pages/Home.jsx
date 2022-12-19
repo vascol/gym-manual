@@ -6,8 +6,11 @@ import PizzaBlock from "../components/PizzaBlock/PizzaBlock"
 import Sort from "../components/Sort"
 import Skeleton from "../components/PizzaBlock/Skeleton"
 import Pagination from "../components/Pagination/Pagination"
+import { SearchContext } from "../App"
 
-const Home = ({ searchValue }) => {
+const Home = () => {
+  const { searchValue } = React.useContext(SearchContext)
+
   const [isLoading, setIsLoading] = React.useState(true)
 
   const [pizzaItems, setPizzaItems] = React.useState([])
@@ -28,11 +31,11 @@ const Home = ({ searchValue }) => {
     const order = sortType.sortProperty.includes("-") ? "asc" : "desc"
     const category = categoryId > 0 ? `category=${categoryId}` : ""
     const search = searchValue ? `&filter=${searchValue}` : ""
-    const pagination = `page=${currentPage}&limit=8`
+    const pagination = `&page=${currentPage}&limit=8`
 
     axios
       .get(
-        `https://63948ccc4df9248eada596f8.mockapi.io/items?${pagination}${category}&sortBy=${sortBy}&order=${order}${search}`
+        `https://63948ccc4df9248eada596f8.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}${search}${pagination}`
       )
       .then((res) => {
         setPizzaItems(res.data)
