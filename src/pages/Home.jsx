@@ -7,11 +7,7 @@ import Sort from "../components/Sort"
 import Skeleton from "../components/PizzaBlock/Skeleton"
 import Pagination from "../components/Pagination/Pagination"
 import { useDispatch, useSelector } from "react-redux"
-import {
-  setCategoryId,
-  setCurrentPage,
-  setSort,
-} from "../redux/filter/filterSlice"
+import { setCategoryId, setCurrentPage } from "../redux/filter/filterSlice"
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -24,10 +20,9 @@ const Home = () => {
 
   const [pizzaItems, setPizzaItems] = React.useState([])
 
-  // const [sortType, setSortType] = React.useState({
-  //   name: "популярністю",
-  //   sortProperty: "rating",
-  // })
+  const onCklickCategory = (id) => {
+    dispatch(setCategoryId(id))
+  }
 
   React.useEffect(() => {
     setIsLoading(true)
@@ -47,7 +42,7 @@ const Home = () => {
         setIsLoading(false)
         window.scrollTo(0, 0)
       })
-  }, [categoryId, sort, searchValue, currentPage])
+  }, [categoryId, sort.sortProperty, searchValue, currentPage])
 
   // Фільтрація для статичних даних
 
@@ -71,9 +66,9 @@ const Home = () => {
       <div className="content__top">
         <Categories
           categoryId={categoryId}
-          onClickCategory={(i) => dispatch(setCategoryId(i))}
+          onClickCategory={onCklickCategory}
         />
-        <Sort sortType={sort} onClickSort={(i) => dispatch(setSort(i))} />
+        <Sort sort={sort} />
       </div>
       <h2 className="content__title">Всі піци</h2>
       <div className="content__items">{isLoading ? skeletons : pizzas}</div>
