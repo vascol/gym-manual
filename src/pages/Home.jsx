@@ -24,6 +24,10 @@ const Home = () => {
     dispatch(setCategoryId(id))
   }
 
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number))
+  }
+
   React.useEffect(() => {
     setIsLoading(true)
 
@@ -73,7 +77,7 @@ const Home = () => {
       <h2 className="content__title">Всі піци</h2>
       <div className="content__items">{isLoading ? skeletons : pizzas}</div>
 
-      <Pagination onChangePage={(number) => dispatch(setCurrentPage(number))} />
+      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
 
       {/* <div className="content__error-info">
           <h2>Виникла помилка 😕</h2>
