@@ -2,7 +2,7 @@ import React from "react"
 import { useDispatch } from "react-redux"
 import { setSort } from "../redux/filter/filterSlice"
 
-const list = [
+export const sortList = [
   { name: "популярністю(DESC)", sortProperty: "rating" },
   { name: "популярністю (ASC)", sortProperty: "-rating" },
   { name: "цініою (DESC)", sortProperty: "price" },
@@ -16,19 +16,37 @@ const Sort = ({ sort }) => {
 
   const [open, setOpen] = React.useState(false)
 
-  // const sortRef = React.useRef()
+  const sortRef = React.useRef()
 
   const onClickListItem = (obj) => {
     dispatch(setSort(obj))
     setOpen(false)
   }
 
-  // React.useEffect(() => {
-  //   document.body.addEventListener("click", handleOutsideClick)
-  // }, [])
+  // const handleOutsideClick = (event) => {
+  //   const path = event.path || (event.composedPath && event.composedPath())
+  //   if (!path.includes(sortRef.current)) {
+  //     setOpen(false)
+  //   }
+  // }
+
+  React.useEffect(() => {
+    const handleOutsideClick = (event) => {
+      let path = event.composedPath().includes(sortRef.current)
+      if (!path) {
+        setOpen(false)
+      }
+    }
+
+    document.body.addEventListener("click", handleOutsideClick)
+
+    return () => {
+      document.body.removeEventListener("click", handleOutsideClick)
+    }
+  }, [])
 
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"
@@ -48,7 +66,7 @@ const Sort = ({ sort }) => {
       {open && (
         <div className="sort__popup">
           <ul>
-            {list.map((obj, i) => (
+            {sortList.map((obj, i) => (
               <li
                 key={i}
                 className={

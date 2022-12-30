@@ -3,14 +3,24 @@ import axios from "axios"
 
 import Categories from "../components/Categories"
 import PizzaBlock from "../components/PizzaBlock/PizzaBlock"
-import Sort from "../components/Sort"
+import Sort, { sortList } from "../components/Sort"
 import Skeleton from "../components/PizzaBlock/Skeleton"
 import Pagination from "../components/Pagination/Pagination"
 import { useDispatch, useSelector } from "react-redux"
-import { setCategoryId, setCurrentPage } from "../redux/filter/filterSlice"
+import {
+  setCategoryId,
+  setCurrentPage,
+  setFilters,
+} from "../redux/filter/filterSlice"
+import qs from "qs"
+import { useNavigate } from "react-router-dom"
 
 const Home = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  const isSearch = React.useRef(false)
+  const isMounted = React.useRef(false)
 
   const { categoryId, searchValue, currentPage, sort } = useSelector(
     (state) => state.filter
@@ -24,11 +34,11 @@ const Home = () => {
     dispatch(setCategoryId(id))
   }
 
-  const onChangePage = (number) => {
-    dispatch(setCurrentPage(number))
+  const onChangePage = (page) => {
+    dispatch(setCurrentPage(page))
   }
 
-  React.useEffect(() => {
+  const fetchPizzas = () => {
     setIsLoading(true)
 
     const sortBy = sort.sortProperty.replace("-", "")
@@ -44,8 +54,51 @@ const Home = () => {
       .then((res) => {
         setPizzaItems(res.data)
         setIsLoading(false)
-        window.scrollTo(0, 0)
       })
+  }
+
+  // Якщо змінили параметри і був перший рендер
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        sortProperty: sort.sortProperty,
+        categoryId,
+        currentPage,
+      })
+
+      navigate(`?${queryString}`)
+    }
+    isMounted.current = true
+  }, [categoryId, sort.sortProperty, currentPage, navigate])
+
+  // Якщо був перший рендер, то перевіряємо параметри і зберігаємо в redux
+  React.useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1))
+
+      const sort = sortList.find(
+        (obj) => obj.sortProperty === params.sortProperty
+      )
+
+      dispatch(
+        setFilters({
+          ...params,
+          sort,
+        })
+      )
+      isSearch.current = true
+    }
+  }, [dispatch])
+
+  // Якщо був перший рендер, то робимо запит піци
+  React.useEffect(() => {
+    window.scrollTo(0, 0)
+
+    if (!isSearch.current) {
+      fetchPizzas()
+    }
+
+    isSearch.current = false
   }, [categoryId, sort.sortProperty, searchValue, currentPage])
 
   // Фільтрація для статичних даних
