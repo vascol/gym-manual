@@ -1,6 +1,4 @@
 import React from "react"
-import axios from "axios"
-
 import Categories from "../components/Categories"
 import PizzaBlock from "../components/PizzaBlock/PizzaBlock"
 import Sort, { sortList } from "../components/Sort"
@@ -14,21 +12,24 @@ import {
 } from "../redux/filter/filterSlice"
 import qs from "qs"
 import { useNavigate } from "react-router-dom"
+import { fetchPizzas } from "../redux/pizza/pizzaSlice"
 
 const Home = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const isSearch = React.useRef(false)
+  // const isSearch = React.useRef(false)
   const isMounted = React.useRef(false)
 
   const { categoryId, searchValue, currentPage, sort } = useSelector(
     (state) => state.filter
   )
 
-  const [isLoading, setIsLoading] = React.useState(true)
+  const { items, status } = useSelector((state) => state.pizza)
 
-  const [pizzaItems, setPizzaItems] = React.useState([])
+  // const [isLoading, setIsLoading] = React.useState(true)
+
+  // const [pizzaItems, setPizzaItems] = React.useState([])
 
   const onCklickCategory = (id) => {
     dispatch(setCategoryId(id))
@@ -38,68 +39,64 @@ const Home = () => {
     dispatch(setCurrentPage(page))
   }
 
-  const fetchPizzas = () => {
-    setIsLoading(true)
-
+  const getPizzas = () => {
     const sortBy = sort.sortProperty.replace("-", "")
     const order = sort.sortProperty.includes("-") ? "asc" : "desc"
     const category = categoryId > 0 ? `category=${categoryId}` : ""
     const search = searchValue ? `&filter=${searchValue}` : ""
     const pagination = `&page=${currentPage}&limit=8`
 
-    axios
-      .get(
-        `https://63948ccc4df9248eada596f8.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}${search}${pagination}`
-      )
-      .then((res) => {
-        setPizzaItems(res.data)
-        setIsLoading(false)
-      })
+    dispatch(fetchPizzas({ sortBy, order, category, search, pagination }))
+    window.scrollTo(0, 0)
+    // axios
+    //   .get(
+    //     `https://63948ccc4df9248eada596f8.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}${search}${pagination}`
+    //   )
+    //   .then((res) => {
+    //     setPizzaItems(res.data)
+    //     setIsLoading(false)
+    //   })
   }
+
+  // Якщо був перший рендер, то робимо запит піци
+  React.useEffect(() => {
+    getPizzas()
+  }, [categoryId, sort.sortProperty, searchValue, currentPage])
 
   // Якщо змінили параметри і був перший рендер
   React.useEffect(() => {
     if (isMounted.current) {
-      const queryString = qs.stringify({
+      const params = {
+        categoryId: categoryId > 0 ? categoryId : null,
         sortProperty: sort.sortProperty,
-        categoryId,
         currentPage,
-      })
+      }
 
-      navigate(`?${queryString}`)
+      const queryString = qs.stringify(params, { skipNulls: true })
+
+      navigate(`/?${queryString}`)
     }
-    isMounted.current = true
-  }, [categoryId, sort.sortProperty, currentPage, navigate])
+
+    if (!window.location.search) {
+      fetchPizzas()
+    }
+  }, [categoryId, sort.sortProperty, searchValue, currentPage])
 
   // Якщо був перший рендер, то перевіряємо параметри і зберігаємо в redux
   React.useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1))
-
-      const sort = sortList.find(
-        (obj) => obj.sortProperty === params.sortProperty
-      )
-
+      const sort = sortList.find((obj) => obj.sortProperty === params.sortBy)
       dispatch(
         setFilters({
-          ...params,
-          sort,
+          searchValue: params.search,
+          categoryId: params.category,
+          currentPage: params.currentPage,
+          sort: sort || sortList[0],
         })
       )
-      isSearch.current = true
     }
-  }, [dispatch])
-
-  // Якщо був перший рендер, то робимо запит піци
-  React.useEffect(() => {
-    window.scrollTo(0, 0)
-
-    if (!isSearch.current) {
-      fetchPizzas()
-    }
-
-    isSearch.current = false
-  }, [categoryId, sort.sortProperty, searchValue, currentPage])
+  }, [])
 
   // Фільтрація для статичних даних
 
@@ -112,7 +109,7 @@ const Home = () => {
   //   })
   //   .map((obj) => <PizzaBlock key={obj.id} {...obj} />)
 
-  const pizzas = pizzaItems.map((obj) => <PizzaBlock key={obj.id} {...obj} />)
+  const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />)
 
   const skeletons = [...new Array(10)].map((_, index) => (
     <Skeleton key={index} />
@@ -128,14 +125,17 @@ const Home = () => {
         <Sort sort={sort} />
       </div>
       <h2 className="content__title">Всі піци</h2>
-      <div className="content__items">{isLoading ? skeletons : pizzas}</div>
-
-      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
-
-      {/* <div className="content__error-info">
+      {status === "error" ? (
+        <div className="content__error-info">
           <h2>Виникла помилка 😕</h2>
           <p>Нажаль, не вдалося отримати піци. Спробуйте пізніше.</p>
-        </div> */}
+        </div>
+      ) : (
+        <div className="content__items">
+          {status === "loading" ? skeletons : pizzas}
+        </div>
+      )}
+      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   )
 }
