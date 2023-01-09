@@ -6,13 +6,14 @@ import Skeleton from "../components/PizzaBlock/Skeleton"
 import Pagination from "../components/Pagination/Pagination"
 import { useDispatch, useSelector } from "react-redux"
 import {
+  selectFilter,
   setCategoryId,
   setCurrentPage,
   setFilters,
 } from "../redux/filter/filterSlice"
 import qs from "qs"
 import { useNavigate } from "react-router-dom"
-import { fetchPizzas } from "../redux/pizza/pizzaSlice"
+import { fetchPizzas, selectPizzaData } from "../redux/pizza/pizzaSlice"
 
 const Home = () => {
   const navigate = useNavigate()
@@ -21,11 +22,10 @@ const Home = () => {
   // const isSearch = React.useRef(false)
   const isMounted = React.useRef(false)
 
-  const { categoryId, searchValue, currentPage, sort } = useSelector(
-    (state) => state.filter
-  )
+  const { categoryId, searchValue, currentPage, sort } =
+    useSelector(selectFilter)
 
-  const { items, status } = useSelector((state) => state.pizza)
+  const { items, status } = useSelector(selectPizzaData)
 
   // const [isLoading, setIsLoading] = React.useState(true)
 

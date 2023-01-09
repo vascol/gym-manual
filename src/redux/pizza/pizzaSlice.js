@@ -9,17 +9,19 @@ export const fetchPizzas = createAsyncThunk(
       `https://63948ccc4df9248eada596f8.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}${search}${pagination}`
     )
 
-    if (res.data.length === 0) {
-      thunkAPI.rejectWithValue("Піци пусті")
-    }
+    // if (res.data.length) {
+    //   thunkAPI.rejectWithValue("Піци пусті")
+    // }
 
-    return thunkAPI.fulfillWithValue(res.data)
+    // return thunkAPI.fulfillWithValue(res.data)
+
+    return res.data
   }
 )
 
 const initialState = {
   items: [],
-  status: "loading", // loading|success|error
+  status: "loading", // loading | success | error
 }
 
 const pizzaSlice = createSlice({
@@ -45,6 +47,8 @@ const pizzaSlice = createSlice({
     },
   },
 })
+
+export const selectPizzaData = (state) => state.pizza
 
 export const { setPizzaItems } = pizzaSlice.actions
 
