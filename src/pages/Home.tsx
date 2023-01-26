@@ -31,7 +31,7 @@ const Home: React.FC = () => {
 
   // const [pizzaItems, setPizzaItems] = React.useState([])
 
-  const onCklickCategory = (id: number) => {
+  const onClickCategory = (id: number) => {
     dispatch(setCategoryId(id))
   }
 
@@ -121,10 +121,7 @@ const Home: React.FC = () => {
   return (
     <div className="container">
       <div className="content__top">
-        <Categories
-          categoryId={categoryId}
-          onClickCategory={onCklickCategory}
-        />
+        <Categories categoryId={categoryId} onClickCategory={onClickCategory} />
         <Sort sort={sort} />
       </div>
       <h2 className="content__title">Всі піци</h2>

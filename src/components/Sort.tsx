@@ -7,6 +7,10 @@ type SortListItem = {
   sortProperty: string
 }
 
+type PopupClick = MouseEvent & {
+  path: Node[]
+}
+
 type SortProps = {
   sort: {
     name: string
@@ -43,9 +47,9 @@ const Sort: React.FC<SortProps> = ({ sort }) => {
   // }
 
   React.useEffect(() => {
-    const handleOutsideClick = (event: any) => {
-      let path = event.composedPath().includes(sortRef.current)
-      if (!path) {
+    const handleOutsideClick = (event: MouseEvent) => {
+      const _event = event as PopupClick
+      if (sortRef.current && !_event.composedPath().includes(sortRef.current)) {
         setOpen(false)
       }
     }
