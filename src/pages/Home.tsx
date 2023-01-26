@@ -15,7 +15,7 @@ import qs from "qs"
 import { useNavigate } from "react-router-dom"
 import { fetchPizzas, selectPizzaData } from "../redux/pizza/pizzaSlice"
 
-const Home = () => {
+const Home: React.FC = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -31,11 +31,11 @@ const Home = () => {
 
   // const [pizzaItems, setPizzaItems] = React.useState([])
 
-  const onCklickCategory = (id) => {
+  const onCklickCategory = (id: number) => {
     dispatch(setCategoryId(id))
   }
 
-  const onChangePage = (page) => {
+  const onChangePage = (page: number) => {
     dispatch(setCurrentPage(page))
   }
 
@@ -46,7 +46,10 @@ const Home = () => {
     const search = searchValue ? `&filter=${searchValue}` : ""
     const pagination = `&page=${currentPage}&limit=8`
 
-    dispatch(fetchPizzas({ sortBy, order, category, search, pagination }))
+    dispatch(
+      // @ts-ignore
+      fetchPizzas({ sortBy, order, category, search, pagination })
+    )
     window.scrollTo(0, 0)
     // axios
     //   .get(
@@ -109,7 +112,7 @@ const Home = () => {
   //   })
   //   .map((obj) => <PizzaBlock key={obj.id} {...obj} />)
 
-  const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />)
+  const pizzas = items.map((obj: any) => <PizzaBlock key={obj.id} {...obj} />)
 
   const skeletons = [...new Array(10)].map((_, index) => (
     <Skeleton key={index} />

@@ -1,5 +1,10 @@
 import React from "react"
 
+type CategoriesProps = {
+  categoryId: number
+  onClickCategory: any
+}
+
 const categories = [
   "Всі",
   "М'ясні",
@@ -9,7 +14,10 @@ const categories = [
   "Закриті",
 ]
 
-const Categories = ({ categoryId, onClickCategory }) => {
+const Categories: React.FC<CategoriesProps> = ({
+  categoryId,
+  onClickCategory,
+}) => {
   return (
     <div className="categories">
       <ul>
