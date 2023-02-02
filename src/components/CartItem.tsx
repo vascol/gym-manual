@@ -5,14 +5,15 @@ import {
   minusPizzaItem,
   removePizzaItem,
 } from "../redux/cart/cartSlice"
+import { CartItem as CartItemType } from "../redux/cart/cartSliceTypes"
 
 type CartItemProps = {
   id: string
-  name: string
-  price: number
   imageUrl: string
+  name: string
+  types: string
+  price: number
   sizes: number
-  types: number
   count: number
 }
 
@@ -32,7 +33,7 @@ const CartItem: React.FC<CartItemProps> = ({
   // )
 
   const onClickPlus = () => {
-    dispatch(addPizzaItem({ id }))
+    dispatch(addPizzaItem({ id } as CartItemType))
   }
 
   const onClickMinus = () => {

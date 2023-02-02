@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 const FullPizza: React.FC = () => {
   const [pizza, setPizza] = React.useState<{
     imageUrl: string
-    title: string
+    name: string
     price: number
   }>()
 
@@ -35,7 +35,7 @@ const FullPizza: React.FC = () => {
   return (
     <div className="container">
       <img src={pizza.imageUrl} alt="img" />
-      <h2>{pizza.title}</h2>
+      <h2>{pizza.name}</h2>
       <h4>{pizza.price} грн</h4>
       <Link to="/">
         <button className="button button--outline button--add">

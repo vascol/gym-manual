@@ -1,10 +1,11 @@
 import React from "react"
 import { useDispatch } from "react-redux"
 import { setSort } from "../redux/filter/filterSlice"
+import { SortPropertyEnum } from "../redux/filter/filterSliceTypes"
 
 type SortListItem = {
   name: string
-  sortProperty: string
+  sortProperty: SortPropertyEnum
 }
 
 type PopupClick = MouseEvent & {
@@ -19,12 +20,12 @@ type SortProps = {
 }
 
 export const sortList: SortListItem[] = [
-  { name: "популярністю(DESC)", sortProperty: "rating" },
-  { name: "популярністю (ASC)", sortProperty: "-rating" },
-  { name: "цініою (DESC)", sortProperty: "price" },
-  { name: "цініою (ASC)", sortProperty: "-price" },
-  { name: "алфавітом (DESC)", sortProperty: "title" },
-  { name: "алфавітом (ASC)", sortProperty: "-title" },
+  { name: "популярністю(DESC)", sortProperty: SortPropertyEnum.RATING_DESC },
+  { name: "популярністю (ASC)", sortProperty: SortPropertyEnum.RATING_ASC },
+  { name: "цініою (DESC)", sortProperty: SortPropertyEnum.PRICE_DESC },
+  { name: "цініою (ASC)", sortProperty: SortPropertyEnum.PRICE_ASC },
+  { name: "алфавітом (DESC)", sortProperty: SortPropertyEnum.TITLE_DESC },
+  { name: "алфавітом (ASC)", sortProperty: SortPropertyEnum.TITLE_ASC },
 ]
 
 const Sort: React.FC<SortProps> = ({ sort }) => {
