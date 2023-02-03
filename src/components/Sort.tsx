@@ -1,7 +1,10 @@
 import React from "react"
 import { useDispatch } from "react-redux"
 import { setSort } from "../redux/filter/filterSlice"
-import { SortPropertyEnum } from "../redux/filter/filterSliceTypes"
+import {
+  Sort as SortType,
+  SortPropertyEnum,
+} from "../redux/filter/filterSliceTypes"
 
 type SortListItem = {
   name: string
@@ -13,10 +16,7 @@ type PopupClick = MouseEvent & {
 }
 
 type SortProps = {
-  sort: {
-    name: string
-    sortProperty: string
-  }
+  value: SortType
 }
 
 export const sortList: SortListItem[] = [
@@ -28,7 +28,7 @@ export const sortList: SortListItem[] = [
   { name: "алфавітом (ASC)", sortProperty: SortPropertyEnum.TITLE_ASC },
 ]
 
-const Sort: React.FC<SortProps> = ({ sort }) => {
+export const Sort: React.FC<SortProps> = React.memo(({ value }) => {
   const dispatch = useDispatch()
 
   const [open, setOpen] = React.useState(false)
@@ -78,7 +78,7 @@ const Sort: React.FC<SortProps> = ({ sort }) => {
           />
         </svg>
         <b>Сортувати за:</b>
-        <span onClick={() => setOpen(!open)}>{sort.name}</span>
+        <span onClick={() => setOpen(!open)}>{value.name}</span>
       </div>
       {open && (
         <div className="sort__popup">
@@ -87,7 +87,7 @@ const Sort: React.FC<SortProps> = ({ sort }) => {
               <li
                 key={i}
                 className={
-                  sort.sortProperty === obj.sortProperty ? "active" : ""
+                  value.sortProperty === obj.sortProperty ? "active" : ""
                 }
                 onClick={() => onClickListItem(obj)}
               >
@@ -99,6 +99,4 @@ const Sort: React.FC<SortProps> = ({ sort }) => {
       )}
     </div>
   )
-}
-
-export default Sort
+})

@@ -1,7 +1,7 @@
 import React from "react"
-import Categories from "../components/Categories"
+import { Categories } from "../components/Categories"
 import PizzaBlock from "../components/PizzaBlock/PizzaBlock"
-import Sort, { sortList } from "../components/Sort"
+import { Sort } from "../components/Sort"
 import Skeleton from "../components/PizzaBlock/Skeleton"
 import Pagination from "../components/Pagination/Pagination"
 import { useSelector } from "react-redux"
@@ -33,9 +33,9 @@ const Home: React.FC = () => {
 
   // const [pizzaItems, setPizzaItems] = React.useState([])
 
-  const onClickCategory = (id: number) => {
+  const onClickCategory = React.useCallback((id: number) => {
     dispatch(setCategoryId(id))
-  }
+  }, [])
 
   const onChangePage = (page: number) => {
     dispatch(setCurrentPage(page))
@@ -196,7 +196,7 @@ const Home: React.FC = () => {
     <div className="container">
       <div className="content__top">
         <Categories categoryId={categoryId} onClickCategory={onClickCategory} />
-        <Sort sort={sort} />
+        <Sort value={sort} />
       </div>
       <h2 className="content__title">Всі піци</h2>
       {status === "error" ? (
