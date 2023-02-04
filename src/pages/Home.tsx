@@ -13,8 +13,9 @@ import {
 } from "../redux/filter/filterSlice"
 // import qs from "qs"
 // import { useNavigate } from "react-router-dom"
-import { fetchPizzas, selectPizzaData } from "../redux/pizza/pizzaSlice"
+import { selectPizzaData } from "../redux/pizza/pizzaSlice"
 import { useAppDispatch } from "../redux/store"
+import { fetchPizzas } from "../redux/pizza/asyncActions"
 // import { SearchPizzaParams } from "../redux/pizza/pizzaSliceTypes"
 
 const Home: React.FC = () => {

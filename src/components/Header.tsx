@@ -10,10 +10,20 @@ const Header: React.FC = () => {
 
   const location = useLocation()
 
+  const isMounted = React.useRef(false)
+
   const totalCount = pizzaItems.reduce(
     (sum: number, item: any) => sum + item.count,
     0
   )
+
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(pizzaItems)
+      localStorage.setItem("cart", json)
+    }
+    isMounted.current = true
+  }, [pizzaItems])
 
   return (
     <div className="header">
