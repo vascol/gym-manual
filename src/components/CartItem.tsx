@@ -28,10 +28,6 @@ const CartItem: React.FC<CartItemProps> = ({
 }) => {
   const dispatch = useDispatch()
 
-  // const cartPizzaItem = useSelector((state) =>
-  //   state.cart.pizzaItems.find((obj) => obj.id === id)
-  // )
-
   const onClickPlus = () => {
     dispatch(addPizzaItem({ id } as CartItemType))
   }

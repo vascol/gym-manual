@@ -10,8 +10,6 @@ const Search: React.FC = () => {
 
   const [value, setValue] = React.useState<string>("")
 
-  // const searchValue = useSelector((state) => state.filter.searchValue)
-
   const inputRef = React.useRef<HTMLInputElement>(null)
 
   const onClickClear = () => {
