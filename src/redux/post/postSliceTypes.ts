@@ -1,10 +1,7 @@
-export type Pizza = {
+export type Post = {
   id: string
   name: string
   imageUrl: string
-  price: number
-  sizes: number[]
-  types: string[]
   rating: number
 }
 
@@ -14,7 +11,7 @@ export enum Status {
   ERROR = "error",
 }
 
-export type SearchPizzaParams = {
+export type SearchPostParams = {
   sortBy: string
   order: string
   category: string
@@ -22,7 +19,7 @@ export type SearchPizzaParams = {
   currentPage: string
 }
 
-export interface PizzaSliceState {
-  items: Pizza[]
+export interface PostSliceState {
+  items: Post[]
   status: Status
 }

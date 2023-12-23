@@ -1,8 +1,8 @@
 import React from "react"
 import { Categories } from "../components/Categories"
-import PizzaBlock from "../components/PizzaBlock/PizzaBlock"
+import PostBlock from "../components/PostBlock/PostBlock"
 import { Sort } from "../components/Sort"
-import Skeleton from "../components/PizzaBlock/Skeleton"
+import Skeleton from "../components/PostBlock/Skeleton"
 import Pagination from "../components/Pagination/Pagination"
 import { useSelector } from "react-redux"
 import {
@@ -10,9 +10,9 @@ import {
   setCategoryId,
   setCurrentPage,
 } from "../redux/filter/filterSlice"
-import { selectPizzaData } from "../redux/pizza/pizzaSlice"
+import { selectPostData } from "../redux/post/postSlice"
 import { useAppDispatch } from "../redux/store"
-import { fetchPizzas } from "../redux/pizza/asyncActions"
+import { fetchPosts } from "../redux/post/asyncActions"
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -20,7 +20,7 @@ const Home: React.FC = () => {
   const { categoryId, searchValue, currentPage, sort } =
     useSelector(selectFilter)
 
-  const { items, status } = useSelector(selectPizzaData)
+  const { items, status } = useSelector(selectPostData)
 
   const onClickCategory = React.useCallback((id: number) => {
     dispatch(setCategoryId(id))
@@ -30,7 +30,7 @@ const Home: React.FC = () => {
     dispatch(setCurrentPage(page))
   }
 
-  const getPizzas = async () => {
+  const getPosts = async () => {
     const sortBy = sort.sortProperty.replace("-", "")
     const order = sort.sortProperty.includes("-") ? "asc" : "desc"
     const category = categoryId > 0 ? `category=${categoryId}` : ""
@@ -38,7 +38,7 @@ const Home: React.FC = () => {
     const pagination = `&page=${currentPage}&limit=8`
 
     dispatch(
-      fetchPizzas({
+      fetchPosts({
         sortBy,
         order,
         category,
@@ -52,10 +52,10 @@ const Home: React.FC = () => {
 
   // Якщо змінили параметри і був перший рендер
   React.useEffect(() => {
-    getPizzas()
+    getPosts()
   }, [categoryId, sort.sortProperty, searchValue, currentPage])
 
-  const pizzas = items.map((obj: any) => <PizzaBlock key={obj.id} {...obj} />)
+  const posts = items.map((obj: any) => <PostBlock key={obj.id} {...obj} />)
 
   const skeletons = [...new Array(10)].map((_, index) => (
     <Skeleton key={index} />
@@ -67,15 +67,15 @@ const Home: React.FC = () => {
         <Categories categoryId={categoryId} onClickCategory={onClickCategory} />
         <Sort value={sort} />
       </div>
-      <h2 className="content__title">Всі піци</h2>
+      <h2 className="content__title"></h2>
       {status === "error" ? (
         <div className="content__error-info">
           <h2>Виникла помилка 😕</h2>
-          <p>Нажаль, не вдалося отримати піци. Спробуйте пізніше.</p>
+          <p>Спробуйте пізніше.</p>
         </div>
       ) : (
         <div className="content__items">
-          {status === "loading" ? skeletons : pizzas}
+          {status === "loading" ? skeletons : posts}
         </div>
       )}
       <Pagination currentPage={currentPage} onChangePage={onChangePage} />

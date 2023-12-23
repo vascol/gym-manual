@@ -2,11 +2,10 @@ import axios from "axios"
 import React from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 
-const FullPizza: React.FC = () => {
-  const [pizza, setPizza] = React.useState<{
+const FullPost: React.FC = () => {
+  const [post, setPost] = React.useState<{
     imageUrl: string
     name: string
-    price: number
   }>()
 
   const { id } = useParams()
@@ -15,28 +14,29 @@ const FullPizza: React.FC = () => {
 
   React.useEffect(() => {
     async function fetchPizza() {
+      const apiKey = process.env.REACT_APP_MOCKAPI_KEY
+
       try {
         const { data } = await axios.get(
-          "https://63948ccc4df9248eada596f8.mockapi.io/items/" + id
+          `https://${apiKey}.mockapi.io/trainers/` + id
         )
-        setPizza(data)
+        setPost(data)
       } catch (error) {
-        alert("Такої піци немає!")
+        alert("Такого поста немає!")
         navigate("/")
       }
     }
     fetchPizza()
   }, [])
 
-  if (!pizza) {
+  if (!post) {
     return <>Йде загрузка...</>
   }
 
   return (
     <div className="container">
-      <img src={pizza.imageUrl} alt="img" />
-      <h2>{pizza.name}</h2>
-      <h4>{pizza.price} грн</h4>
+      <img src={post.imageUrl} alt="img" />
+      <h2>{post.name}</h2>
       <Link to="/">
         <button className="button button--outline button--add">
           <span>Назад</span>
@@ -46,4 +46,4 @@ const FullPizza: React.FC = () => {
   )
 }
 
-export default FullPizza
+export default FullPost

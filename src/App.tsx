@@ -13,8 +13,8 @@ const Cart = React.lazy(
 )
 
 // import FullPizza from "./pages/FullPizza"
-const FullPizza = React.lazy(
-  () => import(/* webpackChunkName: "FullPizza"*/ "./pages/FullPizza")
+const FullPost = React.lazy(
+  () => import(/* webpackChunkName: "FullPizza"*/ "./pages/FullPost")
 )
 
 // import NotFound from "./pages/NotFound"
@@ -37,10 +37,10 @@ const App = () => {
             }
           />
           <Route
-            path="pizza/:id"
+            path="post/:id"
             element={
               <Suspense fallback={<div>Йде загрузка...</div>}>
-                <FullPizza />
+                <FullPost />
               </Suspense>
             }
           />

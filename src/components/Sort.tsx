@@ -20,12 +20,10 @@ type SortProps = {
 }
 
 export const sortList: SortListItem[] = [
-  { name: "популярністю(DESC)", sortProperty: SortPropertyEnum.RATING_DESC },
-  { name: "популярністю (ASC)", sortProperty: SortPropertyEnum.RATING_ASC },
-  { name: "цініою (DESC)", sortProperty: SortPropertyEnum.PRICE_DESC },
-  { name: "цініою (ASC)", sortProperty: SortPropertyEnum.PRICE_ASC },
-  { name: "алфавітом (DESC)", sortProperty: SortPropertyEnum.TITLE_DESC },
-  { name: "алфавітом (ASC)", sortProperty: SortPropertyEnum.TITLE_ASC },
+  { name: "популярністю", sortProperty: SortPropertyEnum.RATING_DESC },
+  // { name: "популярністю (ASC)", sortProperty: SortPropertyEnum.RATING_ASC },
+  { name: "алфавітом", sortProperty: SortPropertyEnum.TITLE_DESC },
+  // { name: "алфавітом (ASC)", sortProperty: SortPropertyEnum.TITLE_ASC },
 ]
 
 export const Sort: React.FC<SortProps> = React.memo(({ value }) => {
@@ -39,13 +37,6 @@ export const Sort: React.FC<SortProps> = React.memo(({ value }) => {
     dispatch(setSort(obj))
     setOpen(false)
   }
-
-  // const handleOutsideClick = (event) => {
-  //   const path = event.path || (event.composedPath && event.composedPath())
-  //   if (!path.includes(sortRef.current)) {
-  //     setOpen(false)
-  //   }
-  // }
 
   React.useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {

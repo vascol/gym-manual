@@ -9,9 +9,7 @@ const NotFoundBlock: React.FC = () => {
         <br />
         Нічого не знайдено
       </h1>
-      <p className={styles.description}>
-        Нажаль, дана сторінка відсутня в нашому інтернет магазині
-      </p>
+      <p className={styles.description}>Нажаль, дана сторінка відсутня.</p>
     </div>
   )
 }

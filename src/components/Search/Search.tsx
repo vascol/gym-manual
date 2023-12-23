@@ -69,7 +69,7 @@ const Search: React.FC = () => {
       <input
         className={styles.input}
         ref={inputRef}
-        placeholder="Пошук піци..."
+        placeholder="Пошук..."
         value={value}
         onChange={onChangeInput}
       />
