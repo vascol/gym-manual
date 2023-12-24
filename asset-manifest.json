@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/gym-manual/static/css/main.41fcaebd.css",
+    "main.js": "/gym-manual/static/js/main.c8b4255d.js",
+    "Cart.js": "/gym-manual/static/js/Cart.057000c5.chunk.js",
+    "FullPizza.css": "/gym-manual/static/css/FullPizza.9911d2e5.chunk.css",
+    "FullPizza.js": "/gym-manual/static/js/FullPizza.674cbefa.chunk.js",
+    "NotFound.css": "/gym-manual/static/css/NotFound.849b955b.chunk.css",
+    "NotFound.js": "/gym-manual/static/js/NotFound.5a34cb38.chunk.js",
+    "static/media/empty.png": "/gym-manual/static/media/empty.a4d149dd5b4dc38296fa.png",
+    "index.html": "/gym-manual/index.html",
+    "main.41fcaebd.css.map": "/gym-manual/static/css/main.41fcaebd.css.map",
+    "main.c8b4255d.js.map": "/gym-manual/static/js/main.c8b4255d.js.map",
+    "Cart.057000c5.chunk.js.map": "/gym-manual/static/js/Cart.057000c5.chunk.js.map",
+    "FullPizza.9911d2e5.chunk.css.map": "/gym-manual/static/css/FullPizza.9911d2e5.chunk.css.map",
+    "FullPizza.674cbefa.chunk.js.map": "/gym-manual/static/js/FullPizza.674cbefa.chunk.js.map",
+    "NotFound.849b955b.chunk.css.map": "/gym-manual/static/css/NotFound.849b955b.chunk.css.map",
+    "NotFound.5a34cb38.chunk.js.map": "/gym-manual/static/js/NotFound.5a34cb38.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.41fcaebd.css",
+    "static/js/main.c8b4255d.js"
+  ]
+}
