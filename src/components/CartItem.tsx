@@ -1,5 +1,6 @@
 import React from "react"
 import { useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
 import { removePostItem } from "../redux/cart/cartSlice"
 
 type CartItemProps = {
@@ -13,19 +14,21 @@ const CartItem: React.FC<CartItemProps> = ({ id, name, imageUrl }) => {
   const dispatch = useDispatch()
 
   const onCklickRemove = () => {
-    if (window.confirm("Ви дійсно хочете видалити закладку?")) {
-      dispatch(removePostItem(id))
-    }
+    dispatch(removePostItem(id))
   }
 
   return (
     <div className="cart__item">
-      <div className="cart__item-img">
-        <img className="post-block__image" src={imageUrl} alt="img" />
-      </div>
-      <div className="cart__item-info">
-        <h3>{name}</h3>
-      </div>
+      <Link key={id} to={`../post/${id}`}>
+        <div className="cart__item-wrapper">
+          <div className="cart__item-img">
+            <img className="post-block__image" src={imageUrl} alt="img" />
+          </div>
+          <div className="cart__item-info">
+            <h3>{name}</h3>
+          </div>
+        </div>
+      </Link>
       <div className="cart__item-remove">
         <div
           className="button button--outline button--circle"

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { addPostItem, selectCartItemById } from "../../redux/cart/cartSlice"
 import { CartItem } from "../../redux/cart/cartSliceTypes"
+import AddBtn from "../AddBtn"
 
 type ItemsBlockProps = {
   id: string
@@ -25,7 +26,9 @@ const PostBlock: React.FC<ItemsBlockProps> = ({ id, name, imageUrl }) => {
       imageUrl,
       count: 0,
     }
-    dispatch(addPostItem(item))
+    if (addedPostCount < 1) {
+      dispatch(addPostItem(item))
+    }
   }
 
   return (
@@ -35,7 +38,7 @@ const PostBlock: React.FC<ItemsBlockProps> = ({ id, name, imageUrl }) => {
           <img className="post-block__image" src={imageUrl} alt="img" />
         </Link>
         <h4 className="post-block__title">{name}</h4>
-        <div className="post-block__bottom">
+        {/* <div className="post-block__bottom">
           <button
             className={
               addedPostCount > 0
@@ -61,12 +64,13 @@ const PostBlock: React.FC<ItemsBlockProps> = ({ id, name, imageUrl }) => {
               </>
             )}
             {addedPostCount > 0 ? (
-              <span>Додано в закаладки</span>
+              <span>В закаладках</span>
             ) : (
               <span>Додати в закладки</span>
             )}
           </button>
-        </div>
+        </div> */}
+        <AddBtn id={id} name={name} imageUrl={imageUrl} />
       </div>
     </div>
   )

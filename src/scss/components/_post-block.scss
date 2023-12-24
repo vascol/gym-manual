@@ -1,14 +1,29 @@
 @import "../variables";
 
 .post-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
   width: 280px;
   text-align: center;
   margin-bottom: 65px;
+  padding: 11px;
+  padding-bottom: 21px;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
 
-  // &:hover {
-  //   transform: scale(1.03);
-  // }
+  @media (max-width: 545px) {
+    margin-bottom: 35px;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  &:hover {
+    transform: scale(1.005);
+  }
 
   &-wrapper {
     display: flex;
@@ -17,7 +32,7 @@
 
   &__image {
     width: 260px;
-    height: 260px;
+    // height: 260px;
   }
 
   &__title {
@@ -62,14 +77,14 @@
   &__bottom {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 20px;
   }
 
-  &__price {
-    font-weight: bold;
-    font-size: 22px;
-    line-height: 27px;
-    letter-spacing: 0.015em;
-  }
+  // &__price {
+  //   font-weight: bold;
+  //   font-size: 22px;
+  //   line-height: 27px;
+  //   letter-spacing: 0.015em;
+  // }
 }

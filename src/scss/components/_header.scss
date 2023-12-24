@@ -4,6 +4,10 @@
   border-bottom: 1px solid $gray-line;
   padding: 40px 0;
 
+  @media (max-width: 545px) {
+    padding-bottom: 20px;
+  }
+
   .container {
     display: flex;
     align-items: center;
@@ -31,10 +35,16 @@
       letter-spacing: 1%;
       text-transform: uppercase;
       font-weight: 800;
+      @media (max-width: 375px) {
+        font-size: 20px;
+      }
     }
 
     p {
       color: #7b7b7b;
+      @media (max-width: 375px) {
+        font-size: 13px;
+      }
     }
   }
 }

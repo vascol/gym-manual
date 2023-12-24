@@ -5,7 +5,7 @@ type CategoriesProps = {
   onClickCategory: (i: number) => void
 }
 
-const categories = ["Всі статті", "Рецепти", "Вправи", "Рекомендації"]
+const categories = ["Всі статті", "Харчування", "Вправи", "Рекомендації"]
 
 export const Categories: React.FC<CategoriesProps> = React.memo(
   ({ categoryId, onClickCategory }) => {

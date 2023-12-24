@@ -39,7 +39,15 @@ const Cart: React.FC = () => {
               <path d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5z" />
               <path d="M4.268 1A2 2 0 0 1 6 0h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L13 13.768V2a1 1 0 0 0-1-1z" />
             </svg>
-            Закладки
+            <div className="cart__bottom-details">
+              <span>
+                {" "}
+                Всього:{" "}
+                <b>
+                  {totalCount} {totalCount === 1 ? "закладка" : "закладки"}
+                </b>{" "}
+              </span>
+            </div>
           </h2>
           <div className="cart__clear" onClick={onCklickClear}>
             <svg
@@ -78,7 +86,7 @@ const Cart: React.FC = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <span>Очистити закладки</span>
+            <span>Очистити все</span>
           </div>
         </div>
         <div className="content__items">
@@ -87,7 +95,7 @@ const Cart: React.FC = () => {
           ))}
         </div>
         <div className="cart__bottom">
-          <div className="cart__bottom-details">
+          {/* <div className="cart__bottom-details">
             <span>
               {" "}
               Всього:{" "}
@@ -95,7 +103,7 @@ const Cart: React.FC = () => {
                 {totalCount} {totalCount === 1 ? "закладка" : "закладки"}
               </b>{" "}
             </span>
-          </div>
+          </div> */}
           <div className="cart__bottom-buttons">
             <Link to="/" className="button pay-btn button--add go-back-btn">
               <svg

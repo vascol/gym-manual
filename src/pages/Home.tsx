@@ -70,7 +70,7 @@ const Home: React.FC = () => {
       <h2 className="content__title"></h2>
       {status === "error" ? (
         <div className="content__error-info">
-          <h2>Виникла помилка 😕</h2>
+          <h2>Порожньо 😕</h2>
           <p>Спробуйте пізніше.</p>
         </div>
       ) : (

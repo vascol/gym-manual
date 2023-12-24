@@ -6,6 +6,9 @@ import { Route, Routes } from "react-router-dom"
 
 import MainLayout from "./layouts/MainLayout"
 import Home from "./pages/Home"
+import { selectPostData } from "./redux/post/postSlice"
+import { useSelector } from "react-redux"
+import Footer from "./components/Footer"
 
 // import Cart from "./pages/Cart"
 const Cart = React.lazy(
@@ -14,7 +17,7 @@ const Cart = React.lazy(
 
 // import FullPizza from "./pages/FullPizza"
 const FullPost = React.lazy(
-  () => import(/* webpackChunkName: "FullPizza"*/ "./pages/FullPost")
+  () => import(/* webpackChunkName: "FullPizza"*/ "./pages/FullPost/FullPost")
 )
 
 // import NotFound from "./pages/NotFound"
@@ -23,6 +26,7 @@ const NotFound = React.lazy(
 )
 
 const App = () => {
+  const { status } = useSelector(selectPostData)
   return (
     <div className="App">
       <Routes>
@@ -54,6 +58,7 @@ const App = () => {
           />
         </Route>
       </Routes>
+      {status === "success" && <Footer />}
     </div>
   )
 }
