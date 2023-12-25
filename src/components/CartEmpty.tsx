@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import cartEmptyImg from "../assets/img/empty.png"
+import cartEmptyImg from "../assets/img/list-cart-empty.png"
 
 const CartEmpty: React.FC = () => {
   return (

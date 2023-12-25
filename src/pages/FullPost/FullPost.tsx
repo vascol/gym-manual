@@ -60,9 +60,7 @@ const FullPost: React.FC = () => {
   }, [])
 
   if (!post) {
-    return (
-      <h1 style={{ textAlign: "center", marginTop: "155px" }}>Loading...</h1>
-    )
+    return <h1 className="preloader">Loading...</h1>
   }
 
   return (

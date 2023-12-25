@@ -33,7 +33,7 @@ const Header: React.FC = () => {
             <img width="64" src={logoSvg} alt="logo" />
             <div>
               <h1>Old School Gym</h1>
-              <p>Стань найсильнішим у Всесвіті</p>
+              <p> Стань найсильнішим у Всесвіті</p>
             </div>
           </div>
         </Link>

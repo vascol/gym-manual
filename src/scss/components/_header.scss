@@ -2,7 +2,7 @@
 
 .header {
   border-bottom: 1px solid $gray-line;
-  padding: 40px 0;
+  padding: 36px 0;
 
   @media (max-width: 545px) {
     padding-bottom: 0;
@@ -24,6 +24,7 @@
 
   &__logo {
     display: flex;
+    align-items: center;
 
     img {
       margin-right: 15px;
@@ -38,6 +39,9 @@
       @media (max-width: 375px) {
         font-size: 20px;
       }
+    }
+
+    i {
     }
 
     p {

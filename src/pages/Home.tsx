@@ -60,9 +60,7 @@ const Home: React.FC = () => {
   // const skeletons = [...new Array(10)].map((_, index) => (
   //   <Skeleton key={index} />
   // ))
-  const skeletons = (
-    <h1 style={{ textAlign: "center", marginTop: "155px" }}>Loading...</h1>
-  )
+  const skeletons = <h1 className="preloader">Loading...</h1>
 
   return (
     <div className="container">

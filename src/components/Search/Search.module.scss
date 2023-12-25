@@ -28,7 +28,7 @@
   }
 
   &:focus {
-    width: 480px;
+    width: 380px;
     opacity: 1;
     border: 1px solid rgba(0, 0, 0, 0.4);
     @media (max-width: 662px) {
@@ -51,6 +51,7 @@
 }
 
 .clearIcon {
+  margin-top: 14px;
   width: 18px;
   height: 18px;
   opacity: 0.3;
@@ -58,6 +59,10 @@
   right: 15px;
   top: 16px;
   cursor: pointer;
+
+  // @media (max-width: 662px) {
+  //   top: 11px;
+  // }
 
   &:hover {
     opacity: 0.8;
