@@ -57,15 +57,18 @@ const Home: React.FC = () => {
 
   const posts = items.map((obj: any) => <PostBlock key={obj.id} {...obj} />)
 
-  const skeletons = [...new Array(10)].map((_, index) => (
-    <Skeleton key={index} />
-  ))
+  // const skeletons = [...new Array(10)].map((_, index) => (
+  //   <Skeleton key={index} />
+  // ))
+  const skeletons = (
+    <h1 style={{ textAlign: "center", marginTop: "155px" }}>Loading...</h1>
+  )
 
   return (
     <div className="container">
       <div className="content__top">
         <Categories categoryId={categoryId} onClickCategory={onClickCategory} />
-        <Sort value={sort} />
+        {/* <Sort value={sort} /> */}
       </div>
       <h2 className="content__title"></h2>
       {status === "error" ? (
@@ -78,7 +81,7 @@ const Home: React.FC = () => {
           {status === "loading" ? skeletons : posts}
         </div>
       )}
-      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
+      {/* <Pagination currentPage={currentPage} onChangePage={onChangePage} /> */}
     </div>
   )
 }

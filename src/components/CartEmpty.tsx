@@ -10,7 +10,7 @@ const CartEmpty: React.FC = () => {
       </h2>
       <p>Скоріш за все, ви ще нічого не додали.</p>
       <img src={cartEmptyImg} alt="Empty cart" />
-      <Link to="/" className="button button--black">
+      <Link to="/gym-manual/" className="button button--black">
         <span>Повернутися назад</span>
       </Link>
     </div>

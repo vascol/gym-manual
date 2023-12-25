@@ -9,6 +9,7 @@ import Home from "./pages/Home"
 import { selectPostData } from "./redux/post/postSlice"
 import { useSelector } from "react-redux"
 import Footer from "./components/Footer"
+import { ButtonScrollUp } from "./components/ButtonScrollUp/ButtonScrollUp"
 
 // import Cart from "./pages/Cart"
 const Cart = React.lazy(
@@ -30,10 +31,10 @@ const App = () => {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<MainLayout />}>
+        <Route path="/gym-manual/" element={<MainLayout />}>
           <Route path="" element={<Home />} />
           <Route
-            path="cart"
+            path="/gym-manual/cart/"
             element={
               <Suspense fallback={<div>Йде загрузка кошика...</div>}>
                 <Cart />
@@ -41,7 +42,7 @@ const App = () => {
             }
           />
           <Route
-            path="post/:id"
+            path="/gym-manual/post/:id"
             element={
               <Suspense fallback={<div>Йде загрузка...</div>}>
                 <FullPost />
@@ -58,6 +59,7 @@ const App = () => {
           />
         </Route>
       </Routes>
+      <ButtonScrollUp />
       {status === "success" && <Footer />}
     </div>
   )

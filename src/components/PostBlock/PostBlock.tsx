@@ -34,7 +34,7 @@ const PostBlock: React.FC<ItemsBlockProps> = ({ id, name, imageUrl }) => {
   return (
     <div className="post-block-wrapper">
       <div className="post-block">
-        <Link key={id} to={`post/${id}`}>
+        <Link key={id} to={`/gym-manual/post/${id}`}>
           <img className="post-block__image" src={imageUrl} alt="img" />
         </Link>
         <h4 className="post-block__title">{name}</h4>

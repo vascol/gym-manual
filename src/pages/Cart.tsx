@@ -105,7 +105,10 @@ const Cart: React.FC = () => {
             </span>
           </div> */}
           <div className="cart__bottom-buttons">
-            <Link to="/" className="button pay-btn button--add go-back-btn">
+            <Link
+              to="/gym-manual/"
+              className="button pay-btn button--add go-back-btn"
+            >
               <svg
                 width="8"
                 height="14"
