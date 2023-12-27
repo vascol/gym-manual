@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/gym-manual/static/css/main.e85f5eb1.css",
-    "main.js": "/gym-manual/static/js/main.4f5afd07.js",
+    "main.js": "/gym-manual/static/js/main.edb91e13.js",
     "Cart.js": "/gym-manual/static/js/Cart.b7f36f49.chunk.js",
     "FullPost.css": "/gym-manual/static/css/FullPost.8dc56e2e.chunk.css",
-    "FullPost.js": "/gym-manual/static/js/FullPost.2053591b.chunk.js",
+    "FullPost.js": "/gym-manual/static/js/FullPost.4653e918.chunk.js",
     "NotFound.css": "/gym-manual/static/css/NotFound.849b955b.chunk.css",
     "NotFound.js": "/gym-manual/static/js/NotFound.9172ed74.chunk.js",
     "index.html": "/gym-manual/index.html",
     "main.e85f5eb1.css.map": "/gym-manual/static/css/main.e85f5eb1.css.map",
-    "main.4f5afd07.js.map": "/gym-manual/static/js/main.4f5afd07.js.map",
+    "main.edb91e13.js.map": "/gym-manual/static/js/main.edb91e13.js.map",
     "Cart.b7f36f49.chunk.js.map": "/gym-manual/static/js/Cart.b7f36f49.chunk.js.map",
     "FullPost.8dc56e2e.chunk.css.map": "/gym-manual/static/css/FullPost.8dc56e2e.chunk.css.map",
-    "FullPost.2053591b.chunk.js.map": "/gym-manual/static/js/FullPost.2053591b.chunk.js.map",
+    "FullPost.4653e918.chunk.js.map": "/gym-manual/static/js/FullPost.4653e918.chunk.js.map",
     "NotFound.849b955b.chunk.css.map": "/gym-manual/static/css/NotFound.849b955b.chunk.css.map",
     "NotFound.9172ed74.chunk.js.map": "/gym-manual/static/js/NotFound.9172ed74.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e85f5eb1.css",
-    "static/js/main.4f5afd07.js"
+    "static/js/main.edb91e13.js"
   ]
 }
