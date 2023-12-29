@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/gym-manual/static/css/main.aa1350c7.css",
-    "main.js": "/gym-manual/static/js/main.42af958e.js",
+    "main.js": "/gym-manual/static/js/main.d2815e79.js",
     "Cart.js": "/gym-manual/static/js/Cart.b7f36f49.chunk.js",
     "FullPost.css": "/gym-manual/static/css/FullPost.07fa9981.chunk.css",
     "FullPost.js": "/gym-manual/static/js/FullPost.705bd757.chunk.js",
@@ -10,7 +10,7 @@
     "static/media/quizz.png": "/gym-manual/static/media/quizz.79ebb752cefd2c4fc407.png",
     "index.html": "/gym-manual/index.html",
     "main.aa1350c7.css.map": "/gym-manual/static/css/main.aa1350c7.css.map",
-    "main.42af958e.js.map": "/gym-manual/static/js/main.42af958e.js.map",
+    "main.d2815e79.js.map": "/gym-manual/static/js/main.d2815e79.js.map",
     "Cart.b7f36f49.chunk.js.map": "/gym-manual/static/js/Cart.b7f36f49.chunk.js.map",
     "FullPost.07fa9981.chunk.css.map": "/gym-manual/static/css/FullPost.07fa9981.chunk.css.map",
     "FullPost.705bd757.chunk.js.map": "/gym-manual/static/js/FullPost.705bd757.chunk.js.map",
@@ -19,6 +19,6 @@
   },
   "entrypoints": [
     "static/css/main.aa1350c7.css",
-    "static/js/main.42af958e.js"
+    "static/js/main.d2815e79.js"
   ]
 }
