@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/gym-manual/static/css/main.491e5e2f.css",
-    "main.js": "/gym-manual/static/js/main.c3ba3502.js",
+    "main.js": "/gym-manual/static/js/main.94771124.js",
     "Cart.js": "/gym-manual/static/js/Cart.b7f36f49.chunk.js",
     "FullPost.css": "/gym-manual/static/css/FullPost.585bea96.chunk.css",
-    "FullPost.js": "/gym-manual/static/js/FullPost.d8166c21.chunk.js",
+    "FullPost.js": "/gym-manual/static/js/FullPost.21acbf0f.chunk.js",
     "NotFound.css": "/gym-manual/static/css/NotFound.849b955b.chunk.css",
     "NotFound.js": "/gym-manual/static/js/NotFound.9172ed74.chunk.js",
     "static/media/quizz.png": "/gym-manual/static/media/quizz.79ebb752cefd2c4fc407.png",
     "index.html": "/gym-manual/index.html",
     "main.491e5e2f.css.map": "/gym-manual/static/css/main.491e5e2f.css.map",
-    "main.c3ba3502.js.map": "/gym-manual/static/js/main.c3ba3502.js.map",
+    "main.94771124.js.map": "/gym-manual/static/js/main.94771124.js.map",
     "Cart.b7f36f49.chunk.js.map": "/gym-manual/static/js/Cart.b7f36f49.chunk.js.map",
     "FullPost.585bea96.chunk.css.map": "/gym-manual/static/css/FullPost.585bea96.chunk.css.map",
-    "FullPost.d8166c21.chunk.js.map": "/gym-manual/static/js/FullPost.d8166c21.chunk.js.map",
+    "FullPost.21acbf0f.chunk.js.map": "/gym-manual/static/js/FullPost.21acbf0f.chunk.js.map",
     "NotFound.849b955b.chunk.css.map": "/gym-manual/static/css/NotFound.849b955b.chunk.css.map",
     "NotFound.9172ed74.chunk.js.map": "/gym-manual/static/js/NotFound.9172ed74.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.491e5e2f.css",
-    "static/js/main.c3ba3502.js"
+    "static/js/main.94771124.js"
   ]
 }
