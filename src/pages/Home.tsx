@@ -35,7 +35,7 @@ const Home: React.FC = () => {
     const order = sort.sortProperty.includes("-") ? "asc" : "desc"
     const category = categoryId > 0 ? `category=${categoryId}` : ""
     const search = searchValue ? `&search=${searchValue}` : ""
-    const pagination = `&page=${currentPage}&limit=8`
+    const pagination = `&page=${currentPage}&limit=9`
 
     dispatch(
       fetchPosts({

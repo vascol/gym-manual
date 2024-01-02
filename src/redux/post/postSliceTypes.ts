@@ -1,6 +1,8 @@
 export type Post = {
   id: string
   list: string[]
+  listVitamins: string[]
+  listMinerals: string[]
   name: string
   imageUrl: string
   imageUrl1: string
@@ -14,6 +16,10 @@ export type Post = {
   imageUrl9: string
   imageUrl10: string
   imageUrl11: string
+  imageUrl12: string
+  imageUrlARRAY1: string[]
+  imageUrlARRAY2: string[]
+  textFood: string[]
   text: string
   text1: string
   text2: string
@@ -26,6 +32,7 @@ export type Post = {
   text9: string
   text10: string
   text11: string
+  text12: string
   rating: number
   category: number
 }

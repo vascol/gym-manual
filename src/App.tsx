@@ -16,9 +16,9 @@ const Cart = React.lazy(
   () => import(/* webpackChunkName: "Cart"*/ "./pages/Cart")
 )
 
-// import FullPizza from "./pages/FullPizza"
+// import FullPost from "./pages/FullPost"
 const FullPost = React.lazy(
-  () => import(/* webpackChunkName: "FullPizza"*/ "./pages/FullPost/FullPost")
+  () => import(/* webpackChunkName: "FullPost"*/ "./pages/FullPost/FullPost")
 )
 
 // import NotFound from "./pages/NotFound"
@@ -60,7 +60,6 @@ const App = () => {
         </Route>
       </Routes>
       <ButtonScrollUp />
-      {status === "success" && <Footer />}
     </div>
   )
 }

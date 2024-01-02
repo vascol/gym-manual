@@ -1,11 +1,15 @@
 @import "../variables";
 
 .header {
+  position: relative;
   border-bottom: 1px solid $gray-line;
   padding: 36px 0;
 
   @media (max-width: 545px) {
     padding-bottom: 0;
+  }
+  @media (max-width: 400px) {
+    padding-top: 16px;
   }
 
   .container {
@@ -18,6 +22,9 @@
 
       .header__cart {
         margin-top: 20px;
+        @media (max-width: 800px) {
+          margin-top: 16px;
+        }
       }
     }
   }

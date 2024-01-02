@@ -9,7 +9,7 @@ const initialState: PostSliceState = {
 }
 
 const pizzaSlice = createSlice({
-  name: "pizza",
+  name: "post",
   initialState,
   reducers: {
     setPostItems(state, action: PayloadAction<Post[]>) {
