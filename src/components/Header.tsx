@@ -1,7 +1,7 @@
 import React from "react"
 import { useSelector } from "react-redux"
 import { Link, useLocation } from "react-router-dom"
-import logoSvg from "../assets/img/logo.png"
+import logoSvg from "../assets/img/quizz.png"
 import { selectCart } from "../redux/cart/cartSlice"
 import Search from "./Search/Search"
 
